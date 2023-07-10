@@ -32,10 +32,12 @@ public class TwilioOTPService {
 
             String otp = generateOTp();
             String otpMessage = "Your OTP is" + otp;
+            System.out.println(otpMessage+" "+to+" "+from);
             Message message = Message.creator(
                             to, from,
                             otpMessage)
                     .create();
+            // this value must be fetched from session scope when using UI
             otpMap.put(passwordResetRequest.getUserName(), otp);
             passwordResetResponseDto = new PasswordResetResponseDto(otpMessage, OtpStatus.DELIVERED);
         } catch (Exception exception) {

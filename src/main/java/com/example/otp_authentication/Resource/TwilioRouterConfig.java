@@ -1,6 +1,7 @@
 package com.example.otp_authentication.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
@@ -11,6 +12,8 @@ public class TwilioRouterConfig {
     @Autowired
     private TwilioOtpHandler handler;
 
+
+    @Bean
     public RouterFunction<ServerResponse> handleSMS(){
         return RouterFunctions.route()
                 .POST("/router/sendOTP",handler::sendOTP)
